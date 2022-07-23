@@ -48,6 +48,59 @@ const questions = [
     },
 ]; 
 
+inquirer
+.prompt([
+{
+    type: 'input',
+    name: 'creator',
+    message: 'Who created this project?'
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'What is your email address?'
+},
+{ 
+    type: 'input',
+    name: 'username',
+    message: 'What is your Github username'
+},
+{
+//    this must appear as the title 
+    type: 'input',
+    name: 'projectTitle',
+    message: 'What is the projects name?'
+},
+{
+    type: 'input'
+    name: 'description'
+    message: ''
+},
+{
+    type: 
+    name:
+    message:
+},
+{
+    type: 
+    name:
+    message:
+},
+// WHEN I enter my project title 
+// THEN this is displayed as the title of the README
+// WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
+])
+.then(data => {
+    const filename = `${data.name
+      .toLowerCase()
+      .split('')
+      .join('')}.json`;
+
+    fs.writeFile(filename, JSON.stringify(data, null, '\t'), err=>
+      err ? console.log(err)  : console.log('success')
+    );
+})
+
 // TODO: Create a function to write README file
 // function writeToFile(fileName, data) {}
 
@@ -56,6 +109,26 @@ const questions = [
 
 // Function call to initialize app
 // init();
+
+// promptUser()
+//   .then(promptProject)
+//   .then(portfolioData => {
+//     return generatePage(portfolioData);
+//   })
+//   .then(pageHTML => {
+//     return writeFile(pageHTML);
+//   })
+//   .then(writeFileResponse => {
+//     console.log(writeFileResponse);
+//     return copyFile();
+//   })
+//   .then(copyFileResponse => {
+//     console.log(copyFileResponse);
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
 
 
 // GIVEN a command-line application that accepts user input
