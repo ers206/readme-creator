@@ -10,43 +10,43 @@ console.log(message);
 console.log(sum);
 
 // TODO: Create an array of questions for user input
-const questions = [
-    {
-        type: 'input',
-        name: 'creator',
-        message: 'Who created this project?'
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: 'What is your email address?'
-    },
-    {
-        type: 'input',
-        name: 'username',
-        message: 'What is your Github username'
-    },
-    {
-        type: 'input',
-        name: 'project',
-        message: 'What is the projects name?'
-    },
-    {
-        type: 
-        name:
-        message:
-    },
-    {
-        type: 
-        name:
-        message:
-    },
-    {
-        type: 
-        name:
-        message:
-    },
-]; 
+// const questions = [
+//     {
+//         type: 'input',
+//         name: 'creator',
+//         message: 'Who created this project?'
+//     },
+//     {
+//         type: 'input',
+//         name: 'email',
+//         message: 'What is your email address?'
+//     },
+//     {
+//         type: 'input',
+//         name: 'username',
+//         message: 'What is your Github username'
+//     },
+//     {
+//         type: 'input',
+//         name: 'project',
+//         message: 'What is the projects name?'
+//     },
+//     {
+//         type: 
+//         name:
+//         message:
+//     },
+//     {
+//         type: 
+//         name:
+//         message:
+//     },
+//     {
+//         type: 
+//         name:
+//         message:
+//     },
+// ]; 
 
 inquirer
 .prompt([
@@ -63,32 +63,57 @@ inquirer
 { 
     type: 'input',
     name: 'username',
-    message: 'What is your Github username'
+    message: 'What is your Github username?'
 },
 {
 //    this must appear as the title 
     type: 'input',
-    name: 'projectTitle',
+    name: 'title',
     message: 'What is the projects name?'
 },
 {
-    type: 'input'
-    name: 'description'
+    type: 'input',
+    name: 'description',
+    message: 'Please give a description of your project'
+},
+{
+    type: 'input', 
+    name: 'installation',
+    message: 'Please enter the installation instructions'
+},
+{
+    type: 'input',
+    name: 'usage',
+    message: 'Not sure how to word this one usageInstructions'
+},
+{
+    type: 'input',
+    name: 'contributors',
+    message: 'Who contributed to this project?'
+},
+{
+    type: 'input',
+    name: 'test',
+    message: 'Please enter the test instructions'
+},
+{
+    type: 'list',
+    name: 'license',
+    message: 'Choose a license for your application',
+    choices: ['','','']
+
+},
+{
+    type: '',
+    name: '',
     message: ''
-},
-{
-    type: 
-    name:
-    message:
-},
-{
-    type: 
-    name:
-    message:
 },
 // WHEN I enter my project title 
 // THEN this is displayed as the title of the README
 // WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
+// THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests 
+// WHEN I choose a license for my application from a list of options 
+// THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
 ])
 .then(data => {
     const filename = `${data.name
@@ -97,7 +122,7 @@ inquirer
       .join('')}.json`;
 
     fs.writeFile(filename, JSON.stringify(data, null, '\t'), err=>
-      err ? console.log(err)  : console.log('success')
+      err ? console.log(err)  : console.log('it works!')
     );
 })
 
@@ -115,8 +140,8 @@ inquirer
 //   .then(portfolioData => {
 //     return generatePage(portfolioData);
 //   })
-//   .then(pageHTML => {
-//     return writeFile(pageHTML);
+//   .then(readMe => {
+//     return writeFile(readMe);
 //   })
 //   .then(writeFileResponse => {
 //     console.log(writeFileResponse);
