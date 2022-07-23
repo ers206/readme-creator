@@ -12,14 +12,24 @@ console.log(sum);
 // TODO: Create an array of questions for user input
 const questions = [
     {
-        type: 
-        name:
-        message:
+        type: 'input',
+        name: 'creator',
+        message: 'Who created this project?'
     },
     {
-        type: 
-        name:
-        message:
+        type: 'input',
+        name: 'email',
+        message: 'What is your email address?'
+    },
+    {
+        type: 'input',
+        name: 'username',
+        message: 'What is your Github username'
+    },
+    {
+        type: 'input',
+        name: 'project',
+        message: 'What is the projects name?'
     },
     {
         type: 
