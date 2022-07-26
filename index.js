@@ -2,6 +2,10 @@
 const fs =require('fs');
 const inquirer = require('inquirer');
 const generatePage = require('./utils/generateMarkdown')
+const util = require('utils');
+const { filter } = require('rxjs');
+const { isBuffer } = require('util');
+const generateMarkdown = require('./utils/generateMarkdown');
 // var message = 'Hello Node!';
 
 // var sum = 5 + 3;
@@ -84,12 +88,12 @@ inquirer
 {
     type: 'input', 
     name: 'installation',
-    message: 'Please enter the installation instructions if needed'
+    message: 'What does the user need to install to run this app?'
 },
 {
     type: 'input',
     name: 'usage',
-    message: 'Not sure how to word this one usageInstructions'
+    message: 'How does the user run this app?'
 },
 {
     type: 'input',
@@ -140,20 +144,46 @@ inquirer
 // })
 
 // TODO: Create a function to write README file
+
+// function writeToFile(fileName, data) {
+//     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+// }
+
 function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+
+    fs.writeFile(fileName, data, function(err){
+
+        console.log(fileName)
+        console.log(data)
+        if (err) {
+            return console.log(err)
+        } else{
+            console.log('it worked')
+        }
+                 
+
+    })
 }
 
 // TODO: Create a function to initialize app
-function init() {
-    inquirer.prompt(questions).then(inquireResponses => {
-        console.log('Readme generated')
-        writeToFile('README.md', generateMarkdown({...inquireResponses}));
-    });
-} 
+// function init() {
+//     inquirer.prompt(questions).then(inquireResponses => {
+//         console.log('Readme generated')
+//         writeToFile('README.md', generateMarkdown({...inquireResponses}));
+//     });
+// } 
+
+function init(){
+    inquirer.prompt(questions)
+    .then(function (data){
+        writeToFile('README.md', generateMarkdown(data));
+    })
+}
+
 
 // Function call to initialize app
-// init();
+
+init();
 
 // promptUser()
 //   .then(promptProject)
