@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const fs =require('fs');
 const inquirer = require('inquirer');
-
+const generatePage = require('./utils/generateMarkdown')
 // var message = 'Hello Node!';
 
 // var sum = 5 + 3;
@@ -17,33 +17,74 @@ inquirer
 {
     type: 'input',
     name: 'creator',
-    message: 'Who created this project?'
+    message: 'Who created this project?',
+    validate: nameInput => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log('Please enter your name');
+          return false;
+        }
+      }
 },
 {
     type: 'input',
     name: 'email',
-    message: 'What is your email address?'
+    message: 'What is your email address?',
+    validate: emailInput => {
+        if (emailInput) {
+          return true;
+        } else {
+          console.log('Please enter your email address');
+          return false;
+        }
+      }
 },
 { 
     type: 'input',
     name: 'username',
-    message: 'What is your Github username?'
+    message: 'What is your Github username?',
+    validate: userInput => {
+        if (userInput) {
+          return true;
+        } else {
+          console.log('Please enter your github user name');
+          return false;
+        }
+      }
 },
 {
 //    this must appear as the title 
     type: 'input',
     name: 'title',
-    message: 'What is the projects name?'
+    message: 'What is the projects name?',
+    validate: titleInput => {
+        if (titleInput) {
+          return true;
+        } else {
+          console.log('Please enter your project name');
+          return false;
+        }
+      }
+    
 },
 {
     type: 'input',
     name: 'description',
-    message: 'Please give a description of your project'
+    message: 'Please give a description of your project',
+    validate: descriptionInput => {
+        if (descriptionInput) {
+          return true;
+        } else {
+          console.log('Please enter a description of your project');
+          return false;
+        }
+      }
 },
 {
     type: 'input', 
     name: 'installation',
-    message: 'Please enter the installation instructions'
+    message: 'Please enter the installation instructions if needed'
 },
 {
     type: 'input',
@@ -58,13 +99,15 @@ inquirer
 {
     type: 'input',
     name: 'test',
-    message: 'Please enter the test instructions'
+    message: 'Please enter the test instructions if needed'
 },
-// {
-//     type: 'list',
-//     name: 'license',
-//     message: 'Choose a license for your application',
-//     choices: ['','','']
+{
+    type: 'list',
+   name: 'license',
+    message: 'Choose a license for your application',
+    choices: ['','',''],
+  
+  }
 
 // },
 // {
@@ -72,6 +115,15 @@ inquirer
 //     name: '',
 //     message: ''
 // },
+
+// .then(projectData => {
+//     portfolioData.projects.push(projectData);
+//     if (projectData.confirmAddProject) {
+//       return promptProject(portfolioData);
+//     } else {
+//       return portfolioData;
+//     }
+//   });
 
 ])
 
@@ -88,10 +140,17 @@ inquirer
 // })
 
 // TODO: Create a function to write README file
-// function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+}
 
 // TODO: Create a function to initialize app
-// function init() {}
+function init() {
+    inquirer.prompt(questions).then(inquireResponses => {
+        console.log('Readme generated')
+        writeToFile('README.md', generateMarkdown({...inquireResponses}));
+    });
+} 
 
 // Function call to initialize app
 // init();
