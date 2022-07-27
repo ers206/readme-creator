@@ -1,13 +1,20 @@
 // TODO: Include packages needed for this application
 const fs =require('fs');
 const inquirer = require('inquirer');
-const generatePage = require('./utils/generateMarkdown')
-const util = require('utils');
-const { filter } = require('rxjs');
-const { isBuffer } = require('util');
-const generateMarkdown = require('./utils/generateMarkdown');
-// var message = 'Hello Node!';
+// const util = require('utils'); 
 
+// const generatePage = require('./utils/generateMarkdown') 
+// const { filter } = require('rxjs'); 
+// const { isBuffer } = require('util');
+// const generateMarkdown = require('./utils/generateMarkdown'); 
+
+// from module 
+// const inquirer = require('inquirer');
+// const generatePage = require('./src/page-template');
+// const { writeFile, copyFile } = require('./utils/generate-site');
+
+
+// var message = 'Hello Node!';
 // var sum = 5 + 3;
 
 // console.log(message);
@@ -15,9 +22,7 @@ const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 
-
-inquirer
-.prompt([
+inquirer.prompt([
 {
     type: 'input',
     name: 'creator',
@@ -109,9 +114,38 @@ inquirer
     type: 'list',
    name: 'license',
     message: 'Choose a license for your application',
-    choices: ['','',''],
+    choices: ['MIT','APACHE 2.0',''],
   
   }
+]) 
+// .then(projectData => {
+//   readmeData.projects.push(projectData);
+//   if (projectData.confirmAddProject) {
+//     return promptProject(readmeData);
+//   } else {
+//     return readmeData;
+//   }
+// });
+// };
+
+// promptUser()
+// .then(promptProject)
+// .then(readmeData => {
+// return generatePage(readmeData);
+// })
+// .then(pageHTML => {
+// return writeFile(pageHTML);
+// })
+// .then(writeFileResponse => {
+// console.log(writeFileResponse);
+// return copyFile();
+// })
+// .then(copyFileResponse => {
+// console.log(copyFileResponse);
+// })
+// .catch(err => {
+// console.log(err);
+// });
 
 // },
 // {
@@ -129,7 +163,6 @@ inquirer
 //     }
 //   });
 
-])
 
 
 // .then(data => {
@@ -149,21 +182,21 @@ inquirer
 //     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
 // }
 
-function writeToFile(fileName, data) {
+// function writeToFile(fileName, data) {
 
-    fs.writeFile(fileName, data, function(err){
+//     fs.writeFile(fileName, data, function(err){
 
-        console.log(fileName)
-        console.log(data)
-        if (err) {
-            return console.log(err)
-        } else{
-            console.log('it worked')
-        }
+//         console.log(fileName)
+//         console.log(data)
+//         if (err) {
+//             return console.log(err)
+//         } else{
+//             console.log('it worked')
+//         }
                  
 
-    })
-}
+//     })
+// }
 
 // TODO: Create a function to initialize app
 // function init() {
@@ -173,17 +206,17 @@ function writeToFile(fileName, data) {
 //     });
 // } 
 
-function init(){
-    inquirer.prompt(questions)
-    .then(function (data){
-        writeToFile('README.md', generateMarkdown(data));
-    })
-}
+// function init(){
+//     inquirer.prompt(questions)
+//     .then(function (data){
+//         writeToFile('README.md', generateMarkdown(data));
+//     })
+// }
 
 
 // Function call to initialize app
 
-init();
+// init();
 
 // promptUser()
 //   .then(promptProject)
